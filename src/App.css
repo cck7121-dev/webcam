@@ -1,0 +1,544 @@
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	border: none;
+	user-select: none;
+	border-radius: 10px;
+}
+
+* {
+	--bg1: #131314e1;
+	--bg2: #1e1f20d4;
+	--bg3: #424446e9;
+	--bg4: #404040;
+	--bg5: #a8a4a4;
+	--word1: #ffffff;
+	--word2: #ffffffb3;
+	--ip: #3b82f6;
+	--ip-hover: #4ade80;
+	--connected: #1e1350;
+}
+
+p {
+	size: 16px;
+}
+
+body,
+#root {
+	font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 400;
+	color: var(--word1);
+	background-color: var(--bg1);
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+	border-radius: 0;
+}
+
+.container {
+	display: flex;
+	flex-wrap: wrap; /* 核心：空間夠就並排，不夠就自動折行 */
+	gap: 20px; /* 卡片之間的間距 */
+	padding: 40px 3vw 60px 3vw;
+	justify-content: center; /* 讓內容居中，視覺上比較平衡 */
+	width: 100%;
+	max-width: 100vw; /* 確保不會超出螢幕寬度 */
+	height: 100%;
+	box-sizing: border-box;
+	overflow-x: hidden; /* 嚴格禁止左右捲動 */
+	color: var(--word1);
+	background-color: var(--bg1);
+}
+
+.card {
+	box-sizing: border-box;
+	padding: 10px;
+	border: 2px solid #323e49;
+	background-color: var(--bg2);
+	height: fit-content;
+	width: fit-content;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: center;
+	justify-content: center;
+
+	flex: 1 1 300px;
+	max-width: 100%;
+	min-width: 300px;
+	box-sizing: border-box;
+	background: var(--bg2);
+	border-radius: 12px;
+	padding: 1.5rem;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+	scroll-margin-top: 100px;
+	transition: all 0.3s ease;
+}
+
+.card-title {
+	font-size: 20px;
+	opacity: 0.5;
+}
+button {
+	width: 300px;
+	padding: 10px;
+	background-color: var(--bg3);
+	color: var(--word2);
+	cursor: pointer;
+}
+.shortcut-btn {
+	width: 100px;
+	padding: 10px;
+	background-color: var(--bg3);
+	color: var(--word2);
+	cursor: pointer;
+}
+button:hover {
+	/* background-color: var(--bg5) !important; */
+	filter: brightness(1.3);
+}
+input:not([type="range"]) {
+	width: 300px;
+	padding: 12px 20px;
+
+	border-radius: 12px;
+	background-color: var(--bg2);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+
+	color: white;
+	text-align: center;
+	font-size: 16px;
+	outline: none;
+	transition: all 0.2s ease;
+}
+
+/* 點擊（聚焦）時的變化 */
+input:not([type="range"]):focus {
+	border-color: #3b82f6; /* 聚焦時邊框變色 */
+	background-color: #252627; /* 背景稍微加深 */
+}
+
+/* 調整 Placeholder 的透明度 */
+input:not([type="range"])::placeholder {
+	color: rgba(255, 255, 255, 0.4);
+}
+/* 針對 Chrome, Safari, Edge, Opera */
+input:not([type="range"])::-webkit-outer-spin-button,
+input:not([type="range"])::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+*:disabled {
+	background-color: var(--bg3);
+	opacity: 0.5;
+	pointer-events: none;
+}
+.info {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0.6;
+	font-size: 16px;
+}
+.subinfo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0.6;
+	font-size: 16px;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.interface-list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.interface-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+	width: 100%;
+	list-style: none;
+	padding: 10px 20px;
+	border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.name {
+	opacity: 0.6;
+	font-size: 16px;
+}
+
+.device-header {
+	opacity: 0.6;
+	font-size: 16px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 10px;
+}
+
+.addr {
+	font-family: monospace;
+	font-weight: bold;
+	color: var(--ip);
+}
+
+.device-details {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin-top: 5px;
+}
+
+.addr-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 6px; /* 每行 IP 之間的間距 */
+	width: 100%;
+}
+
+.addr-row {
+	background-color: var(--bg1); /* 使用比 card 更深一點的背景 */
+	border: 1px solid rgba(255, 255, 255, 0.1); /* 帶個細框 */
+	padding: 8px 12px;
+	border-radius: 8px;
+	display: flex;
+	justify-content: space-between; /* IP 靠左，Port 靠右 */
+	align-items: center;
+	transition: border-color 0.2s;
+}
+.addr-row.connected {
+	background-color: var(--connected); /* 使用比 card 更深一點的背景 */
+}
+
+.interface-item:hover,
+.addr-row:hover {
+	border-color: var(--ip-hover); /* 滑鼠滑過時顯色 */
+}
+
+.ip-text {
+	font-family: monospace;
+	font-size: 16px;
+	color: var(--ip);
+}
+
+.port-tag {
+	font-family: monospace;
+	font-size: 14px;
+	font-weight: bold;
+	color: var(--word2);
+	opacity: 0.8;
+}
+
+.connect-btn {
+	margin-top: 5px;
+	width: 100% !important;
+}
+
+.info-wrapper {
+	padding-bottom: 10px;
+	border-bottom: 1px solid var(--bg4);
+	border-radius: 0;
+}
+
+/*  */
+.wide-card {
+	width: 100%; /* 讓相機列表橫向撐開 */
+	max-width: 800px;
+}
+
+.camera-list {
+	display: flex;
+	flex: 1 1 350px;
+	flex-wrap: wrap;
+	gap: 15px;
+	width: 100%;
+	margin-top: 10px;
+}
+
+.camera-card {
+	background: var(--bg1);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	padding: 15px;
+	border-radius: 12px;
+	text-align: left;
+	/* width: fit-content; */
+	/* min-width: min(350px, 100%); */
+	/* max-width: min(350px, 100%); */
+	/* width: min(350px, 100%); */
+	width: 100%;
+	max-width: 450px;
+}
+
+.camera-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 12px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+	padding-bottom: 8px;
+}
+
+.camera-id {
+	font-weight: bold;
+	color: #3b82f6;
+}
+
+.lens-tag {
+	background: #4ade80;
+	color: #000;
+	padding: 2px 8px;
+	border-radius: 4px;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.lens-tag.front {
+	background: #f87171; /* 前鏡頭用紅色區分 */
+}
+
+.camera-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10px;
+	margin-bottom: 15px;
+}
+
+.stat {
+	display: flex;
+	flex-direction: column;
+}
+
+.stat .label {
+	font-size: 11px;
+	opacity: 0.5;
+	text-transform: uppercase;
+}
+
+.stat .value {
+	font-size: 14px;
+	font-family: monospace;
+}
+
+.res-section .section-title {
+	font-size: 12px;
+	opacity: 0.6;
+	margin-bottom: 5px;
+}
+
+.res-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+}
+
+.res-tag {
+	background: var(--bg3);
+	font-size: 11px;
+	padding: 3px 6px;
+	border-radius: 4px;
+	border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.res-tag small {
+	opacity: 0.7;
+	margin-left: 3px;
+}
+.mdns-list {
+	display: flex;
+	gap: 10px;
+}
+.card_camera {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	align-items: center;
+	justify-content: center;
+}
+.camera-control {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: center;
+	justify-content: center;
+}
+.camera-handler {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	align-items: center;
+	justify-content: center;
+}
+.res-tag.is-running,
+button.reject {
+	background-color: rgb(169, 104, 104);
+}
+.res-tag.is-selected,
+button.allow {
+	background-color: rgb(99, 215, 99);
+}
+.highlight-blue {
+	animation: glow-pulse-blue 1.5s ease-in-out 3;
+	border: 2px solid #4a90e2 !important;
+	scroll-margin: 20px;
+}
+
+@keyframes glow-pulse-blue {
+	0% {
+		box-shadow: 0 0 0px rgba(74, 144, 226, 0);
+		border-color: rgba(74, 144, 226, 0.5);
+	}
+	50% {
+		box-shadow: 0 0 20px rgba(74, 144, 226, 0.8);
+		border-color: rgba(74, 144, 226, 1);
+	}
+	100% {
+		box-shadow: 0 0 0px rgba(74, 144, 226, 0);
+		border-color: rgba(74, 144, 226, 0.5);
+	}
+}
+.highlight-red {
+	animation: glow-pulse-red 1.5s ease-in-out 3;
+	border: 2px solid #f87171 !important;
+	scroll-margin: 20px;
+}
+
+@keyframes glow-pulse-red {
+	0% {
+		box-shadow: 0 0 0px rgba(248, 113, 113, 0);
+		border-color: rgba(248, 113, 113, 0.5);
+	}
+	50% {
+		box-shadow: 0 0 20px rgba(248, 113, 113, 0.8);
+		border-color: rgba(248, 113, 113, 1);
+	}
+	100% {
+		box-shadow: 0 0 0px rgba(248, 113, 113, 0);
+		border-color: rgba(248, 113, 113, 0.5);
+	}
+}
+
+/* 1. 設定捲動軸整體的寬度 (垂直) 與高度 (水平) */
+::-webkit-scrollbar {
+	width: 8px; /* 寬度越小越精簡 */
+	height: 8px;
+}
+
+/* 2. 捲動軸軌道 (底色) */
+::-webkit-scrollbar-track {
+	background: #1e1e1e; /* 深黑色背景，與你的 dark mode 匹配 */
+	border-radius: 10px;
+}
+
+/* 3. 捲動軸滑塊 (動起來的部分) */
+::-webkit-scrollbar-thumb {
+	background: #444; /* 滑塊顏色，比背景稍淺 */
+	border-radius: 10px; /* 圓角設定 */
+	border: 2px solid #1e1e1e; /* 透過邊框製造縮排感，讓它看起來更細長 */
+}
+
+/* 4. 當滑鼠懸停在滑塊上時的顏色 */
+::-webkit-scrollbar-thumb:hover {
+	background: #666;
+}
+
+/* 5. 隱藏上下箭頭 (在 WebKit 中預設不顯示，除非特定設定，這行是保險) */
+::-webkit-scrollbar-button {
+	display: none;
+}
+
+.url-item {
+	display: flex;
+
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+	size: 12px;
+	list-style: none;
+	padding: 10px 12px;
+	color: var(--word2);
+	border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Toast 容器 */
+.toast-container {
+	position: fixed;
+	bottom: 10%;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #333;
+	color: white;
+	padding: 12px 24px;
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+
+	/* 動畫 */
+	animation: slideUp 0.3s ease-out, fadeOut 0.3s ease-in 2.7s forwards;
+}
+
+@keyframes slideUp {
+	from {
+		opacity: 0;
+		transform: translate(-50%, 20px);
+	}
+	to {
+		opacity: 1;
+		transform: translate(-50%, 0);
+	}
+}
+
+@keyframes fadeOut {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+.stream-container {
+	box-sizing: border-box;
+	height: fit-content;
+	width: fit-content;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: center;
+	justify-content: center;
+
+	flex: 1 1 300px;
+	max-width: 100%;
+	min-width: 300px;
+	box-sizing: border-box;
+	border-radius: 12px;
+}
