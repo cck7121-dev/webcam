@@ -54,7 +54,10 @@ android {
             }
         }
         getByName("release") {
-          signingConfig = signingConfigs.getByName("release")
+          // For build
+          // signingConfig = signingConfigs.getByName("release")
+          
+          // For dev
             isMinifyEnabled = true
             proguardFiles(
                 *fileTree(".") { include("**/*.pro") }

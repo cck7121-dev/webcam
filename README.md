@@ -5,9 +5,11 @@
 把 **Android 手機相機**變成可分享的網路影像來源，  
 支援手機與電腦間的串流協作（手機→手機、手機→電腦）。
 
-</div>
+<p align="center">
+   <img  alt="Screenshot" src="screenshots/screenshot.jpeg" />
+</p>
 
----
+</div>
 
 ## ✨ Features
 
