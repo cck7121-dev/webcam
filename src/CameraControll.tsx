@@ -1,5 +1,5 @@
 import { createEffect, createSignal, on, Show } from "solid-js";
-import { CameraCapabilities, cancelFocus, setExposureCompensation, setLinearZoom, setTorch, setZoomRatio, } from "tauri-plugin-camera";
+import { CameraCapabilities, setExposureCompensation, setLinearZoom, setTorch, } from "tauri-plugin-camera";
 
 interface CameraControlPanelProps {
     capabilities: CameraCapabilities;
